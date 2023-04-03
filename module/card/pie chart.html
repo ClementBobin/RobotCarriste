@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style-module.css">
+    <link rel="stylesheet" href="../../dashboard.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+  </head>
+  <body>
+    <div><canvas id="chart"></canvas></div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const chart = document.querySelector("#chart");
+
+// create a new chart
+new Chart(chart,{
+    type: 'pie',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],
+
+        datasets: [
+            {
+                label: 'BTC',
+                data: [29374, 33537, 49631, 59095, 57828, 36684, 33572, 39974, 48847, 48116, 61004],
+                borderWidth: 2
+            },
+            {
+                label: 'ETH',
+                data: [31500, 41000, 88800, 26000, 46000, 32698, 5000, 3000, 18656, 24832, 36844],
+                borderWidth: 2
+            }
+        ],
+        options: {
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+        responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+            title: {
+                display: true,
+                text: 'Chart.js Horizontal Bar Chart'
+            }
+        }
+    },
+    }
+});
+</script>

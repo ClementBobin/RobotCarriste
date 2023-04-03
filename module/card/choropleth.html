@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style-module.css">
+    <link rel="stylesheet" href="../../dashboard.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+  </head>
+  <body>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/chartjs-chart-geo@3.5.2/build/index.umd.min.js"></script>
+    <script>
+      const url = 'https://unpkg.com/world-atlas@2.0.2/countries-50m.json';
+      fetch (url).then((result) => result.json()).then((datapoint) => {
+        const countries =  ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
+
+        console.log(countries.map(country => ({feature: country, value: Math.random()})));
+
+        const data = {
+      labels: countries.map(country => country.properties.name),
+      datasets: [{
+        label: 'Countries',
+        data: countries.map(country => ({feature: country, value: Math.random()
+       })),
+      }]
+    };
+
+    // config 
+    const config = {
+      type: 'choropleth',
+      data,
+      options: {
+        scales: {
+          xy: {
+            projection: 'equalEarth'
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+});
+    </script>
+
+  </body>
+</html>

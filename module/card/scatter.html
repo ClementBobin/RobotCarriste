@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style-module.css">
+    <link rel="stylesheet" href="../../dashboard.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+  </head>
+  <body>
+    <div><canvas id="chart"></canvas></div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const chart = document.querySelector("#chart");
+
+// create a new chart
+new Chart(chart,{
+    type: 'scatter',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],
+
+        datasets: [
+            {
+                label: 'BTC',
+                data: [{
+                x: -10,
+                y: 0
+                }, {
+                x: 0,
+                y: 10
+                }, {
+                x: 10,
+                y: 5
+                }, {
+                x: 0.5,
+                y: 5.5
+                }],
+                borderWidth: 2
+            },
+        ],
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                }
+            },
+        responsive: true,
+        },
+    }
+});
+</script>

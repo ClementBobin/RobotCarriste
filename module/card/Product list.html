@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style-module.css">
+    <link rel="stylesheet" href="../../dashboard.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+  </head>
+  <body>
+    <div class="recent-orders">
+        <h2>Recent Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Number</th>
+                    <th>Payement</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <a href="#">Show All</a>
+    </div>
+  </body>
+</html>
+<script src="../../data.js"></script>
+<script>
+//fill order in table
+Orders.forEach(data => {
+    const tr = document.createElement('tr');
+    const trContent = `
+        <td>${data.productName}</td>
+        <td>${data.productNumber}</td>
+        <td>${data.payementStatus}</td>
+        <td class="${data.shipping === 'Declined' ? 'danger' : data.shipping === 'pending' ? 'warning' : 'primary'}">${data.shipping}</td>
+        <td class="primary">Details</td>
+    `;
+    tr.innerHTML =trContent;
+    document.querySelector('table tbody').appendChild(tr);
+})
+</script>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style-module.css">
+    <link rel="stylesheet" href="../../dashboard.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+  </head>
+  <body>
+    <div><canvas id="chart"></canvas></div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const chart = document.querySelector("#chart");
+
+let crosshair;
+    const crosshairLabel = {
+        id: 'crosshairLabel',
+        //draw
+        afterDatasetsDraw(chart, args, plugins) {
+            const { ctx, chartArea: {left,right,top,bottom}, scales: {x, y} } = chart;
+
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'grey';
+
+            if(crosshair) {
+                ctx.save();
+                ctx.beginPath();
+                crosshair.forEach((line, index) => {
+                ctx.moveTo(line.startX, line.startY);
+                ctx.lineTo(line.endX, line.endY);
+                ctx.stroke();
+                })
+                ctx.fillStyle = 'grey';
+                ctx.fillRect(0, crosshair[0].startY - 10, left, 20)
+                ctx.font = 'bold 12px sans-serif';
+
+                //font color
+                ctx.textAlign = 'center';
+                ctx.fillStyle = 'white';
+                ctx.fillText(y.getValueForPixel(crosshair[0].startY).toFixed(2), left / 2, crosshair[0].startY);
+            }
+        },
+        //mouse move
+        afterEvent(chart, args) {
+            const { ctx, chartArea: {left, right, top, bottom} } = chart;
+
+            const xCoor = args.event.x;
+            const yCoor = args.event.y;
+            //console.log(args);
+
+            if(!args.inChartArea && crosshair) {
+                crosshair = undefined;
+                args.changed = true;
+            } else if(args.inChartArea){
+                crosshair = [
+                    {
+                    startX: left,
+                    startY: yCoor,
+                    endX: right,
+                    endY: yCoor
+                    },
+                    {
+                    startX: xCoor,
+                    startY: top,
+                    endX: xCoor,
+                    endY: bottom
+                    }
+                ];
+                args.changed = true;
+            }
+        }
+    };   
+// create a new chart
+const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
+new Chart(chart,{
+    type: 'line',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],
+
+        datasets: [
+            {
+                label: 'BTC',
+                data: [29374, 33537, 49631, NaN, 57828, 36684, 33572, 39974, 48847, 48116, 61004],
+                borderColor: 'red',
+                borderWidth: 2,
+                segment: {
+                    borderColor: ctx => skipped(ctx, 'rgb(0,0,0,0.2)') || down(ctx, 'rgb(192,75,75)'),
+                    borderDash: ctx => skipped(ctx, [6, 6]),
+                },
+                spanGaps: true,
+                fill: true,
+            },
+            {
+                label: 'ETH',
+                data: [31500, 41000, 88800, 26000, 46000, 32698, 5000, 3000, 18656, 24832, 36844],
+                borderColor: 'blue',
+                borderWidth: 2,
+                stepped: true,
+                borderDash: [5, 5],
+            }
+        ],
+        options: {
+            responsive: true,
+        layout: {
+            padding: {
+                left: 10,
+            }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    },
+    plugins: [crosshairLabel],
+    plugins: {
+        interaction: {
+            intersect: false,
+            axis: 'x'
+        }, 
+    }
+});
+</script>
