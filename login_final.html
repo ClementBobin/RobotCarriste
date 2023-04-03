@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>login</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+            outline: nones;
+        }
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1dd1a1;
+            transition: 0.5s;
+        }
+        .hero{
+            height: max-content;
+            width: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(banner.jpg);
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+        }
+        .form-box{
+            width: 380px;
+            height: 480px;
+            position: relative;
+            margin: 6% auto;
+            background: #fff;
+            padding: 5px;
+            overflow: hidden;
+        }
+        .button-box{
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            box-shadow: 0 0 20px 9px #ff61241f;
+            border-radius: 30px;
+        }
+        .toggle-btn{
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+        }
+        #btn{
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 110px;
+            height: 100%;
+            background: linear-gradient(to right, #ff105f,#ffad06);
+            border-radius: 30px;
+            transition: .5s;
+        }
+        .social-icons{
+            margin: 30px auto;
+            text-align: center;
+        }
+        .social-icons img{
+            width: 30px;
+            margin: 0 12px;
+            box-shadow: 0 0 20px 0 #7f7f7f3d;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .input-group{
+            top: 180px;
+            position: absolute;
+            width: 280px;
+            transition: .5s;
+        }
+        .input-field{
+            width: 100%;
+            padding: 10px 0;
+            margin: 5px;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            border-bottom: 1px solid #999;
+            outline: none;
+            background: transparent;
+        }
+        .submit-btn{
+            width: 85%;
+            padding: 10px 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: linear-gradient(to right, #ff105f,#ffad06);
+            border: 0;
+            outline: none;
+            border-radius: 30px;
+        }
+        .chech-box{
+            margin: 30px 10px 30px 0;
+        }
+        .colors
+        {
+        position: absolute;
+        right: 0;
+        z-index: 2;
+        padding: 10px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        }
+        .colors span
+        {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            background: var(--clr);
+            margin: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .colors span.active
+        {
+            border: 2px solid #333;
+            scale: 1.25;
+            transition: 0.5s;
+        } 
+        #login{
+            left: 50px;
+        }
+        #register{
+            left: 450px;
+            padding-bottom: 5%;
+        }
+        .validation
+        {
+            background: #376488;
+            padding: 10px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        .validation ul li
+        {
+            position: relative;
+            list-style: none;
+            color: #fff;
+            font-size: 0.85em;
+            transition: 0.5s;
+        }
+        .validation ul li.valid
+        {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .validation ul li::before
+        {
+            content: '\f192';
+            width: 20px;
+            height: 10px;
+            font-family: fontAwesome;
+            display: inline-flex;
+        }
+        .validation ul li.valid::before
+        {
+            content: '\f00c';
+            color: #0f0;
+        }
+        #toggleBtn
+        {
+            position: absolute;
+            right: 0;
+            width: 34px;
+            height: 34px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #toggleBtn::before
+        {
+            content: '\f06e';
+            font-family: fontAwesome;
+        }
+        #toggleBtn.hide::before
+        {
+            content: '\f070';
+        }
+        
+#output{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+   border-bottom: 1px solid #999;
+   outline: none;
+     background: transparent;
+    background-color: transparent;
+    border:none;
+    border-bottom: 2px solid #e2e2e2;
+    width: 75%;
+    height: 35px;
+    padding: 20px 5px;
+    font-family: 'Roboto Mono', monospace;
+    color: #f5f5f5;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+    button.createPassword
+    {
+    width: 11%;
+    height: 38px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    float: right;
+    text-align: right;
+    cursor: pointer;
+}
+input[type="range"]{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 85%;
+    height: 3.5px;
+    margin-top: 0px;
+    background-color: #e2e2e2;
+    border-radius: 3.5px;
+}
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: #008bfd;
+    border-radius: 50%;
+}
+h3{
+    font-family: 'Roboto Mono',sans-serif;
+    display: inline-block;
+    width: 10%;
+    color: #1c1e21;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    margin-left: 3%;
+    border-radius: 3px;
+    font-size: 18px;
+}
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+background: yellowgreen;
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;
+}
+.checkup{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        padding: 60px;
+        background: #fff;
+        z-index: 10000;
+        box-shadow: 0 0 0 100vh rgba(49, 39, 71, 0.95);
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s;
+    }
+    .checkup.active{
+        visibility: visible;
+        opacity: 1;
+    }
+    .checkup h2{
+        font-size:  48px;
+        color: #312747;
+    }
+    .checkup p{
+        font-size: 20px;
+        color: #312747;
+    }
+    .checkup .inputBox{
+        margin-top: 20px;
+    }
+    .checkup .close{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    .checkup .btn_check{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 10em;
+        height: 40px;
+        cursor: grab;
+        display: flex;
+        flex-direction: row;
+    }
+    .checkup .btn_check .email,
+    .checkup .btn_check .sms{
+        width: 5em;
+    }
+.inputfieldcheck {
+  width: 200%;
+  display: flex;
+  justify-content: space-around;
+}
+.inputcheck {
+  height: 3em;
+  width: 3em;
+  border: 2px solid #dad9df;
+  outline: none;
+  text-align: center;
+  font-size: 1.5em;
+  border-radius: 0.3em;
+  background-color: #ffffff;
+  outline: none;
+  /*Hide number field arrows*/
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+#submit {
+  background-color: var(--clr);
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  padding: 0.8em 2em;
+  color: #000000;
+  border-radius: 2em;
+  margin: 1em auto 0 auto;
+  cursor: pointer;
+  border: 1px solid #ff0083;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.input:disabled {
+  color: #89888b;
+}
+.input:focus {
+  border: 3px solid var(--clr);
+}
+.check{
+    width: 50%;
+}
+@media (max-width: 767px){
+    .checkup{
+        width: 90%;
+        padding: 30px;
+    }
+}
+.text{
+    position: relative;
+    color: #4070F4;
+    font-size: 30px;
+    font-weight: 600;
+}
+.text.first-text{
+    color: #010718;
+}
+.sec-text:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-left: 2px solid #010718;
+    animation: animate2 4s steps(12);
+}
+@keyframes animate{
+    100%{
+        left: 0%;
+    }
+    40%, 60%{
+        left: calc(100% + 4px);
+    }
+}
+@keyframes animate2{
+    100%{
+        left: 0%;
+    }
+    40%, 60%{
+        left: calc(100% - 4px);
+    }
+
+}
+.input-box{
+  position: relative;
+}
+.input-box .show_hide{
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A6A6A6;
+  padding: 5px;
+  cursor: pointer;
+}
+.input-box input{
+  height: 60px;
+  width: 100%;
+  border: 2px solid #d3d3d3;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  padding: 0 50px 0 16px;
+}
+.indicator{
+  display: none;
+}
+.indicator.active{
+  display: block;
+  margin-top: 14px;
+}
+.indicator .icon-text{
+  display: flex;
+  align-items: center;
+}
+.icon-text .error_icon{
+  margin-right: 8px;
+}
+.icon-text .text{
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #4070F4;
+}
+.input-box i,
+.input-box label{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a6a6a6;
+  transition: all 0.3s ease;
+}
+.input-box label{
+  left: 15px;
+  font-size: 18px;
+  font-weight: 400;
+  background: #fff;
+  padding: 0 6px;
+  pointer-events: none;
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+  top: 0;
+  font-size: 14px;
+  color: #4070F4;
+}
+.input-box i{
+  right: 15px;
+  cursor: pointer;
+  padding: 8px;
+}
+.alert{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.alert .error{
+  color: #D93025;
+  font-size: 18px;
+  display: none;
+  margin-right: 8px;
+}
+ .text{
+  font-size: 18px;
+  font-weight: 400;
+  color: #a6a6a6;
+}
+.input-box.button input{
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+  background: #4070F4;
+  cursor: not-allowed;
+}
+.input-box.button input.active:hover{
+  background: #265df2;
+  cursor: pointer;
+}
+    /* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #4285F4;
+}
+h2{
+  font-weight: 600;
+  font-size: 1.31rem;
+  padding: 1rem 1.75rem;
+  border-bottom: 1px solid #d4dbe5;
+}
+.input-box{
+  position: relative;
+}
+.input-box input{
+  width: 100%;
+  height: 53px;
+  color: #000;
+  background: none;
+  font-size: 1.06rem;
+  font-weight: 500;
+  border-radius: 4px;
+  letter-spacing: 1.4px;
+  border: 1px solid #aaa;
+  padding: 0 4.85rem 0 1rem;
+}
+.input-box span{
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  line-height: 0px;
+  color: #707070;
+  top: 30px;
+  z-index: 5;
+}
+.input-box span:hover{
+  color: #4285F4!important;
+}
+.pass-indicator{
+  width: 100%;
+  height: 4px;
+  position: relative;
+  background: #dfdfdf;
+  margin-top: -0.25rem;
+  border-radius: 25px;
+}
+.pass-indicator::before{
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+.pass-indicator#weak::before{
+  width: 20%;
+  background: #E64A4A;
+}
+.pass-indicator#medium::before{
+  width: 50%;
+  background: #f1c80b;
+}
+.pass-indicator#strong::before{
+  width: 100%;
+  background: #4285F4;
+}
+.pass-length{
+  margin: 1.56rem 0 1.25rem;
+}
+.pass-length .details{
+  display: flex;
+  justify-content: space-between;
+}
+.pass-length input{
+  width: 100%;
+  height: 5px;
+}
+.pass-settings{
+    background: #b0b0cc;
+    padding: 10px;
+    margin-top: 0;
+    border-radius: 8px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    margin-bottom: 30px;
+}
+.pass-settings.active {
+    display: block;
+}
+.pass-settings .options{
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.pass-settings .options .option{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: calc(100% / 2);
+}
+.options .option:first-child{
+  pointer-events: none;
+}
+.options .option:first-child input{
+  opacity: 0.7;
+}
+.options .option input{
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+.options .option label{
+  cursor: pointer;
+  color: #4f4f4f;
+  padding-left: 0.63rem;
+}
+.generate-btn{
+  width: 100%;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #4285F4;
+  font-size: 1.06rem;
+  padding: 0.94rem 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin: 0.94rem 0 1.3rem;
+}
+.validation
+        {
+            background: #376488;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        .validation ul li
+        {
+            position: relative;
+            list-style: none;
+            color: #fff;
+            font-size: 0.85em;
+            transition: 0.5s;
+        }
+        .validation ul li.valid
+        {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .validation ul li::before
+        {
+            content: '\f192';
+            width: 20px;
+            height: 10px;
+            font-family: fontAwesome;
+            display: inline-flex;
+        }
+        .validation ul li.valid::before
+        {
+            content: '\f00c';
+            color: #0f0;
+        }
+        .loginpsw{
+            top: 70px;
+            position: absolute;
+            left: 250px;
+
+        }
+    </style>
+    <body>
+        <div class="hero">
+            <div class="form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn" onclick="login()">Log in</button>
+                    <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                </div>
+                <div class="social-icons">
+                    <img src="facebook.png">
+                    <img src="twitter.png">
+                    <img src="instagram.png">
+                </div>
+                <form class="input-group" id="login">
+                    <input type="text" class="input-field" placeholder="User Id" required></input>
+                    <input type="password" class="input-field" placeholder="Password" required id="pswrd_login">
+                    <input type="checkbox" class="chech-box"><span>Remember Password</span>
+                    <button type="submit" class="submit-btn" id="launch">Log in</button>
+                </form>
+                <form class="input-group"id="register">
+                    <input type="text" class="input-field" placeholder="User Id" required></input>
+                    <input type="email" class="input-field" placeholder="Email Id" required></input>
+                    <div class="container">
+                        <div class="input-box">
+                            <input spellcheck="false" type="password" id="create_pw" placeholder="Password" onkeyup="checkPassword(this.value)">
+                              <i class="fas fa-eye-slash show passshow"></i>
+                              <span class="material-symbols-rounded">copy_all</span>
+                          </div>    
+                        <div class="pass-indicator"></div>
+                        <div class="pass-length">
+                            <div class="details">
+                                <label class="title">Password Length</label>
+                                <span></span>
+                            </div>
+                            <input type="range" min="1" max="30" value="15" step="1">
+                        </div>
+                    </div>
+                          <div class="validation">
+                              <ul>
+                                  <li id="lower">At least one lowercase character</li>
+                                  <li id="upper">At least one upercase character</li>
+                                  <li id="number">At least one number</li>
+                                  <li id="special">At least one special character</li>
+                                  <li id="length">At least 8 character</li>
+                              </ul>
+                          </div>
+                          <a onclick="genpassoption()">Generate Password</a>
+                          <div class="pass-settings">
+                            <label class="title">Password Settings</label>
+                            <ul class="options">
+                              <li class="option">
+                                <input type="checkbox" id="lowercase" checked>
+                                <label for="lowercase">Lowercase (a-z)</label>
+                              </li>
+                              <li class="option">
+                                <input type="checkbox" id="uppercase">
+                                <label for="uppercase">Uppercase (A-Z)</label>
+                              </li>
+                              <li class="option">
+                                <input type="checkbox" id="numbers">
+                                <label for="numbers">Numbers (0-9)</label>
+                              </li>
+                              <li class="option">
+                                <input type="checkbox" id="symbols">
+                                <label for="symbols">Symbols (!-$^+)</label>
+                              </li>
+                              <li class="option">
+                                <input type="checkbox" id="exc-duplicate">
+                                <label for="exc-duplicate">Exclude Duplicate</label>
+                              </li>
+                              <li class="option">
+                                <input type="checkbox" id="spaces">
+                                <label for="spaces">Include Spaces</label>
+                              </li>
+                            </ul>
+                            <button class="generate-btn">Generate Password</button>
+                          </div>
+                          <div class="input-box">
+                              <input id="confirm_pw" type="password" required>
+                              <label>Confirm password</label>
+                              <i class="fas fa-eye-slash show"></i>
+                            </div>
+                            <div class="alert">
+                              <i class="fas fa-exclamation-circle error"></i>
+                              <span class="text">Enter at least 8 characters</span>
+                            </div>
+                            <div class="input-box button">
+                              <input id="button" type="button" value="Check" disabled>
+                            </div>
+                    <input type="checkbox" class="chech-box"><span>i agree to the term & conditions</span>
+                    <button type="submit" class="submit-btn" id="register_launch" onclick="toggle()">register</button>
+                </form>
+            </div>
+        </div>
+        <div class="colors">
+            <span class="active" onclick="changeColor('#1dd1a1')" style="--clr: #1dd1a1;"></span>
+            <span onclick="changeColor('#ff6b6b')" style="--clr: #ff6b6b;"></span>
+            <span onclick="changeColor('#2e86de')" style="--clr: #2e86de;"></span>
+            <span onclick="changeColor('#f368e0')" style="--clr: #f368e0;"></span>
+            <span onclick="changeColor('#ff9f43')" style="--clr: #ff9f43;"></span>
+        </div>
+        <div class="checkup">
+            <h2>Vérification</h2>
+            <span class="text first-text">We send you a code by</span>
+            <span class="text" id="checkanim">Email</span>
+            <div class="inputBox">
+                <form class="check">
+                    <div class="inputfieldcheck">
+                        <input type="number" maxlength="1" class="inputcheck" disabled />
+                        <input type="number" maxlength="1" class="inputcheck" disabled />
+                        <input type="number" maxlength="1" class="inputcheck" disabled />
+                        <input type="number" maxlength="1" class="inputcheck" disabled />
+                    </div>
+                    <button class="hide" id="submit" onclick="validateOTP()">Submit</button>
+                </form>
+            </div>
+        <img src="/close.png" class="close" onclick="toggle();">
+        <div class="btn_check">
+            <button class="email" onclick="check_email()">Email</button>
+            <button class="sms" onclick="check_sms()">SMS</button>
+        </div>
+        </div>
+    </body>
+</html>
+<script>
+var checktype = 0;
+function check_sms() {
+    checktype = 1;
+    check();
+}
+function check_email() {
+    checktype = 0;
+    check();
+}
+function genpassoption() {
+    document.querySelector('.pass-settings').classList.toggle('active');
+}
+var checkvalue = 0
+let text = document.querySelector("#checkanim");
+var earesing = false;
+function check() {
+    if (checkvalue != checktype) {
+        checkvalue = checktype;
+        if (earesing == false) {
+            text.classList.add('sec-text')
+            earesing = true
+        }
+        else {   
+        setTimeout(function select() {
+
+            if (checktype == 0){
+                text.textContent = "Email";
+
+            } else {
+                text.textContent = "SMS";
+            }
+        }, 2000);
+        setTimeout(function remove() {
+            text.classList.remove('sec-text');
+        }, 2000);
+    }
+    }
+}
+    var start = window.onload
+    var x = document.querySelector("#login");
+    var y = document.querySelector("#register");
+    var z = document.getElementById("btn");
+    let btn_login = document.querySelector("#launch")
+    let btn_register = document.querySelector("#register_launch")
+    let form = document.querySelector('.form-box')
+    
+    let pswrd_login = document.querySelector('#pswrd_login')
+    let toggleBtn_login = document.querySelector('#toggleBtn_login')
+    let toggleBtn_register = document.querySelector('#toggleBtn_register')
+
+    const lengthSlider = document.querySelector(".pass-length input"),
+options = document.querySelectorAll(".option input"),
+copyIcon = document.querySelector(".input-box span"),
+passwordInput = document.querySelector(".input-box input"),
+passIndicator = document.querySelector(".pass-indicator"),
+generateBtn = document.querySelector(".generate-btn");
+
+const characters = { // object of letters, numbers & symbols
+    lowercase: "abcdefghijklmnopqrstuvwxyz",
+    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    numbers: "0123456789",
+    symbols: "^!$%&|[](){}:;.,*+-#@<>~"
+}
+
+const generatePassword = () => {
+    let staticPassword = "",
+    randomPassword = "",
+    excludeDuplicate = false,
+    passLength = lengthSlider.value;
+
+    options.forEach(option => { // looping through each option's checkbox
+        if(option.checked) { // if checkbox is checked
+            // if checkbox id isn't exc-duplicate && spaces
+            if(option.id !== "exc-duplicate" && option.id !== "spaces") {
+                // adding particular key value from character object to staticPassword
+                staticPassword += characters[option.id];
+            } else if(option.id === "spaces") { // if checkbox id is spaces
+                staticPassword += `  ${staticPassword}  `; // adding space at the beginning & end of staticPassword
+            } else { // else pass true value to excludeDuplicate
+                excludeDuplicate = true;
+            }
+        }
+    });
+
+    for (let i = 0; i < passLength; i++) {
+        // getting random character from the static password
+        let randomChar = staticPassword[Math.floor(Math.random() * staticPassword.length)];
+        if(excludeDuplicate) { // if excludeDuplicate is true
+            // if randomPassword doesn't contains the current random character or randomChar is equal 
+            // to space " " then add random character to randomPassword else decrement i by -1
+            !randomPassword.includes(randomChar) || randomChar == " " ? randomPassword += randomChar : i--;
+        } else { // else add random character to randomPassword
+            randomPassword += randomChar;
+        }
+    }
+    passwordInput.value = randomPassword; // passing randomPassword to passwordInput value
+}
+
+const upadatePassIndicator = () => {
+    // if lengthSlider value is less than 8 then pass "weak" as passIndicator id else if lengthSlider 
+    // value is less than 16 then pass "medium" as id else pass "strong" as id
+    passIndicator.id = lengthSlider.value <= 8 ? "weak" : lengthSlider.value <= 16 ? "medium" : "strong";
+}
+
+const updateSlider = () => {
+    // passing slider value as counter text
+    document.querySelector(".pass-length span").innerText = lengthSlider.value;
+    generatePassword();
+    upadatePassIndicator();
+}
+updateSlider();
+
+const copyPassword = () => {
+    navigator.clipboard.writeText(passwordInput.value); // copying random password
+    copyIcon.innerText = "check"; // changing copy icon to tick
+    copyIcon.style.color = "#4285F4";
+    setTimeout(() => { // after 1500 ms, changing tick icon back to copy
+        copyIcon.innerText = "copy_all";
+        copyIcon.style.color = "#707070";
+    }, 1500);
+}
+
+copyIcon.addEventListener("click", copyPassword);
+lengthSlider.addEventListener("input", updateSlider);
+generateBtn.addEventListener("click", generatePassword);
+
+//check
+const createPw = document.querySelector("#create_pw"),
+   confirmPw = document.querySelector("#confirm_pw"),
+   pwShow = document.querySelector(".show"),
+   alertIcon = document.querySelector(".error"),
+   alertText= document.querySelector(".text"),
+   submitBtn = document.querySelector("#button");
+
+
+   pwShow.addEventListener("click", ()=>{
+     if((createPw.type === "password") && (confirmPw.type === "password")){
+       createPw.type = "text";
+       confirmPw.type = "text";
+       pwShow.classList.replace("fa-eye-slash","fa-eye");
+     }else {
+       createPw.type = "password";
+       confirmPw.type = "password";
+       pwShow.classList.replace("fa-eye","fa-eye-slash");
+     }
+   });
+
+   confirmPw.addEventListener("input", ()=>{
+     let val = confirmPw.value.trim()
+     if(val.length >= 8){
+       submitBtn.removeAttribute("disabled");
+       submitBtn.classList.add("active");
+     }else {
+       submitBtn.setAttribute("disabled", true);
+       submitBtn.classList.remove("active");
+       alertText.style.color = "#a6a6a6";
+       alertText.innerText = "Enter at least 8 characters";
+       alertIcon.style.display = "none";
+     }
+   });
+
+  submitBtn.addEventListener("click", ()=>{
+   if(createPw.value === confirmPw.value){
+     alertText.innerText = "Password matched";
+     alertIcon.style.display = "none";
+     alertText.style.color = "#4070F4";
+   }else {
+     alertText.innerText = "Password didn't matched";
+     alertIcon.style.display = "block";
+     alertText.style.color = "#D93025";
+   }
+  });
+  let lowercase = document.querySelector('#lower')
+    let uppercase = document.querySelector('#upper')
+    let digit = document.querySelector('#number')
+    let specialChar = document.querySelector('#special')
+    let minlength = document.querySelector('#length')
+  function checkPassword(data){
+        //javascript pattern
+        const lower = new RegExp('(?=.*[a-z])')
+        const upper = new RegExp('(?=.*[A-Z])')
+        const number = new RegExp('(?=.*[0-9])')
+        const special = new RegExp('(?=.*[!@#\$%\^&\*])')
+        const length = new RegExp('(?=.{8,})')
+        //case validation check
+        if(lower.test(data)){
+            lowercase.classList.add('valid')
+        } else {
+            lowercase.classList.remove('valid');
+        }
+        if(upper.test(data)){
+            uppercase.classList.add('valid')
+        } else {
+            uppercase.classList.remove('valid');
+        }
+        if(number.test(data)){
+            digit.classList.add('valid')
+        } else {
+            digit.classList.remove('valid');
+        }
+        if(special.test(data)){
+            specialChar.classList.add('valid')
+        } else {
+            specialChar.classList.remove('valid');
+        }
+        if(length.test(data)){
+            minlength.classList.add('valid')
+        } else {
+            minlength.classList.remove('valid');
+        }
+    }
+
+    function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+        y.style.height.add = "800px";
+        form.setAttribute("style", 'overflow-y: scroll')
+    }
+    function login() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0px";
+        y.style.height = "480px";
+        form.setAttribute("style", '');
+    }
+    function changeColor(color){
+                document.body.style.background = color;
+                z.style.background = color;
+                register_launch.style.background = color;
+                btn_login.style.background = color;
+
+                //mark as active selected color
+                document.querySelectorAll('span').forEach(function(item){
+                item.classList.remove('active');
+                })
+                event.target.classList.add('active');
+            }
+            function checkPassword(data){
+        //javascript pattern
+        const lower = new RegExp('(?=.*[a-z])')
+        const upper = new RegExp('(?=.*[A-Z])')
+        const number = new RegExp('(?=.*[0-9])')
+        const special = new RegExp('(?=.*[!@#\$%\^&\*])')
+        const length = new RegExp('(?=.{8,})')
+        //case validation check
+        if(lower.test(data)){
+            lowercase.classList.add('valid')
+        } else {
+            lowercase.classList.remove('valid');
+        }
+        if(upper.test(data)){
+            uppercase.classList.add('valid')
+        } else {
+            uppercase.classList.remove('valid');
+        }
+        if(number.test(data)){
+            digit.classList.add('valid')
+        } else {
+            digit.classList.remove('valid');
+        }
+        if(special.test(data)){
+            specialChar.classList.add('valid')
+        } else {
+            specialChar.classList.remove('valid');
+        }
+        if(length.test(data)){
+            minlength.classList.add('valid')
+        } else {
+            minlength.classList.remove('valid');
+        }
+    }
+var yo = 0;
+function toggle(){
+        var checkup = document.querySelector('.checkup');
+        checkup.classList.toggle('active');
+       if (yo == 0){
+           yo++;
+       } else {
+           yo = 0
+       }
+        if (yo != 0){
+        start = startInput();
+    }
+}
+//Initial references
+
+    const input = document.querySelectorAll(".inputcheck");
+    const inputField = document.querySelector(".inputfieldcheck");
+    const submitButton = document.getElementById("submit");
+    let inputCount = 0,
+    finalInput = "";
+
+    //Update input
+    const updateInputConfig = (element, disabledStatus) => {
+    element.disabled = disabledStatus;
+    if (!disabledStatus) {
+        element.focus();
+    } else {
+        element.blur();
+    }
+    };
+
+    input.forEach((element) => {
+    element.addEventListener("keyup", (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+        let { value } = e.target;
+
+        if (value.length == 1) {
+        updateInputConfig(e.target, true);
+        if (inputCount <= 3 && e.key != "Backspace") {
+            finalInput += value;
+            if (inputCount < 3) {
+            updateInputConfig(e.target.nextElementSibling, false);
+            }
+        }
+        inputCount += 1;
+        } else if (value.length == 0 && e.key == "Backspace") {
+        finalInput = finalInput.substring(0, finalInput.length - 1);
+        if (inputCount == 0) {
+            updateInputConfig(e.target, false);
+            return false;
+        }
+        updateInputConfig(e.target, true);
+        e.target.previousElementSibling.value = "";
+        updateInputConfig(e.target.previousElementSibling, false);
+        inputCount -= 1;
+        } else if (value.length > 1) {
+        e.target.value = value.split("")[0];
+        }
+        submitButton.classList.add("hide");
+    });
+    });
+
+    window.addEventListener("keyup", (e) => {
+    if (inputCount > 3) {
+        submitButton.classList.remove("hide");
+        submitButton.classList.add("show");
+        if (e.key == "Backspace") {
+        finalInput = finalInput.substring(0, finalInput.length - 1);
+        updateInputConfig(inputField.lastElementChild, false);
+        inputField.lastElementChild.value = "";
+        inputCount -= 1;
+        submitButton.classList.add("hide");
+        }
+    }
+    });
+
+    const validateOTP = () => {
+    alert("Success");
+    };
+
+    //Start
+    const startInput = () => {
+    inputCount = 0;
+    finalInput = "";
+    input.forEach((element) => {
+        element.value = "";
+    });
+    updateInputConfig(inputField.firstElementChild, false);
+    };
+    genPassword();
+</script>

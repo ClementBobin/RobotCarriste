@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Responsive Sidebar Menu -->
+    <link rel="stylesheet" href="style nav3.css">
+    <link href="script.js">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i> <!--logo from boxicon--> 
+        <a class="logo_name" src="">name</a>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+       <a href="#" class="button1">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+     <li>
+       <a href="#" class="button2">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Forum</span>
+       </a>
+       <span class="tooltip">Forum</span>
+     </li>
+     <li>
+       <a href="#" class="button3">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Analys</span>
+       </a>
+       <span class="tooltip">Analys</span>
+     </li>
+     <li>
+       <a href="login_final.html" src="game.html">
+        <i class='bx bx-joystick'></i>
+        <span class="links_name">Controle</span>
+       </a>
+       <span class="tooltip">Controle</span>
+     </li>
+     <li>
+       <a href="#" class="button4">
+         <i class='bx bx-cart-alt' ></i>
+         <span class="links_name">Order</span>
+       </a>
+       <span class="tooltip">Order</span>
+     </li>
+     <li>
+       <a href="#" class="like">
+         <i class='bx bx-heart' id="love"></i>
+         <span class="links_name">Saved</span>
+       </a>
+       <span class="tooltip">Saved</span>
+     </li>
+     <li>
+       <a href="#" class="button5">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="profile.jpg" alt="profileImg">
+           <div class="name_job">
+             <div class="name">USER</div>
+             <div class="job">jOBS</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+      <div class="style">
+        <div class="style_text">
+          <div class="product">
+              <div class="left_product">
+                    <div class="robot_logo"><i class='bx bx-package'></i></div>
+                    <p class="product_text">Robot</p>
+              </div>
+              <div class="right_product"><a href="#" url="home.html"><i class='bx bx-home' ></i></a></div>
+          </div>
+          <div class="section">
+            <div class="section1" id="main">
+              <div class="main_profil">
+                  <div class="top_profile_box">
+                      <img src="landscape.jpg" class="img_profile">
+                      <div class="name_top">Name</div>
+                  </div>
+                  <ul class="profile_zone">
+                      <li class="info">Name: name</li>
+                      <li class="info">Jobs: jobs</li>
+                      <li class="info">Age: age</li>
+                  </ul>
+              </div>
+            </div>
+            <div class="section2" id="main">
+              <div class="">
+                <i class='bx bxs-heart' ></i>
+              </div>
+            </div>
+            <div class="section3" id="main">
+
+            </div>
+            <div class="section4" id="main">
+              <div>
+                  hi
+              </div>
+            </div>
+            <div class="section5" id="main">
+
+            </div>
+          </div>
+          <div class="footer">
+
+          </div>
+        </div>
+      </div>
+  </section>
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+  
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();//calling the function(optional)
+    });
+  
+    searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+      sidebar.classList.toggle("open");
+      menuBtnChange(); //calling the function(optional)
+    });
+  
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+     if(sidebar.classList.contains("open")){
+       closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+     }else {
+       closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+     }
+    }
+    let button1 = document.querySelector(".button1")
+    let button2 = document.querySelector(".button2")
+    let button3 = document.querySelector(".button3")
+    let button4 = document.querySelector(".button4")
+    let button5 = document.querySelector(".button5")
+    let saved = document.querySelector(".like")
+    let managelike=0
+    let btx = document.querySelector("#love");
+    saved.addEventListener("click", () => {
+      if(managelike==0){
+        btx.classList.replace("bx-bx-heart", "bx-bxs-heart");//replacing the iocns class
+        managelike=1
+        console.log(managelike);
+      }
+        else {
+        btx.classList.replace("bx-bxs-heart","bx-bx-heart");
+        managelike=0
+        console.log(managelike);
+      }
+    });
+    button1.addEventListener("click", () => {
+      a_clear()
+       document.querySelector(".section1").setAttribute("style", 'display:block;')
+    });
+    button2.addEventListener("click", () => {
+      a_clear()
+       document.querySelector(".section2").setAttribute("style", 'display:block;')
+    });
+    button3.addEventListener("click", () => {
+      a_clear()
+       document.querySelector(".section3").setAttribute("style", 'display:block;')
+    });
+    button4.addEventListener("click", () => {
+      a_clear()
+       document.querySelector(".section4").setAttribute("style", 'display:block;')
+    });
+    button5.addEventListener("click", () => {
+      a_clear()
+       document.querySelector(".section5").setAttribute("style", 'display:block;')
+    });
+      function a_clear() {
+        document.querySelector(".section1").setAttribute("style", 'display:none;')
+        document.querySelector(".section2").setAttribute("style", 'display:none;')
+        document.querySelector(".section3").setAttribute("style", 'display:none;')
+        document.querySelector(".section4").setAttribute("style", 'display:none;')
+        document.querySelector(".section5").setAttribute("style", 'display:none;')
+      }
+    </script>
+</body>
+</html>

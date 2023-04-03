@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <link href='https://unpkg.com/ionicons@4.5.10-0/css/ionicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link
+        href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+        rel="stylesheet"
+        />
+         <style>
+             *{
+                 padding: 0;
+                 margin: 0;
+                 box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+             }
+             body{
+                height: 100vh;
+                background: linear-gradient(135deg, #8052ec, #d161ff);
+                }
+                form {
+                width: 75vmin;
+                height: 100%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                padding: 40px 0;
+                }
+                input[type="text"] {
+                width: 100%;
+                padding: 15px 10px;
+                border: none;
+                border-bottom: 1px solid #645979;
+                outline: none;
+                border-radius: 5px 5px 0 0;
+                background-color: transparent;
+                font-size: 16px;
+                z-index: 3;
+                position: relative;
+                }
+             .banner{
+                width: 100%;
+                height: 45vh;
+             }
+             .search_bar{
+                 width: 80%;
+                 height: 2em;
+                 position: relative;
+                 top: 2vh;
+             }
+             .show_result{
+                 position: relative;
+                 width: 80%;
+                 top: 4vh;
+                 border-top: 2px black;
+             }
+             .presentation{
+                 width: 80%;
+                 height: ;
+                 top: 2vh;
+             }
+             ul {
+                list-style: none;
+            }
+            .list {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 0 0 5px 5px;
+            }
+            .list-items {
+            padding: 10px 5px;
+            }
+            .list-items:hover {
+            background-color: #dddddd;
+            }
+            #suggestion {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  left: 19px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  color: #868686;
+}
+.input-container {
+  position: relative;
+  background-color: #ffffff;
+  width: 25em;
+  height: 4.4em;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+         </style>
+    </head>
+    <body>
+        <nav></nav>
+        <div class="banner"></div>
+        <div class="search_bar">
+            <form class="search-box_is-mobile-view_is-top" action="/" autocomplete="off">
+            
+                    <div class="input-container">
+                
+                    <label class="search-box__search-label">
+                        <input type="text" id="input" class="search-box__input-search-box" placeholder="Search" required="" name="p" autocomplete="off">
+                        <span id="suggestion"></span>
+                    </label>
+                    <button class="search-box__search-submit" type="submit">
+                    
+                        <svg class="search-box__search-icon-submit" width="12" height="12" fill="none" >
+                            <path d="M8 7.947C7.991 7.955 7.981 7.964 7.973 7.973C7.963 7.982 7.955 7.991 7.946 8.001C7.315 8.619 6.451 9 5.5 9C3.57 9 2 7.43 2 5.5C2 3.571 3.57 2 5.5 2C7.429 2 9 3.571 9 5.5C9 6.451 8.618 7.316 8 7.947ZM11.707 10.293L10.03 8.616C10.641 7.73 11 6.656 11 5.5C11 2.468 8.532 0 5.5 0C2.467 0 0 2.468 0 5.5C0 8.533 2.467 11 5.5 11C6.655 11 7.729 10.642 8.615 10.03L10.292 11.707C10.488 11.903 10.744 12 11 12C11.255 12 11.511 11.903 11.707 11.707C12.097 11.317 12.097 10.684 11.707 10.293Z" fill="#520044"></path>
+                        </svg>
+                    </button>
+                    </div>
+                <ul class="list"></ul>
+            </form>
+        </div>
+        <div class="show_result"><ul>
+
+        </ul></div>
+        <div class="presentation">
+            <iframe src="new product.html" style=""></iframe>
+        </div>
+    </body>
+    <footer></footer>
+</html>
+<script>
+    let names = [
+  "Ayla",
+  "Jake",
+  "Sean",
+  "Henry",
+  "Brad",
+  "Stephen",
+  "Taylor",
+  "Timmy",
+  "Cathy",
+  "John",
+  "Amanda",
+  "Amara",
+  "Sam",
+  "Sandy",
+  "Danny",
+  "Ellen",
+  "Camille",
+  "Chloe",
+  "Emily",
+  "Nadia",
+  "Mitchell",
+  "Harvey",
+  "Lucy",
+  "Amy",
+  "Glen",
+  "Peter",
+];
+
+names.sort();
+let input = document.getElementById("input");
+let suggestion = document.getElementById("suggestion");
+//Enter key code
+const enterKey = 13;
+
+window.onload = () => {
+  input.value = "";
+  clearSuggestion();
+};
+
+const clearSuggestion = () => {
+  suggestion.innerHTML = "";
+};
+
+const caseCheck = (word) => {
+  //Array of characters
+  word = word.split("");
+  let inp = input.value;
+  //loop through every character in ino
+  for (let i in inp) {
+    //if input character matches with character in word no need to change
+    if (inp[i] == word[i]) {
+      continue;
+    } else if (inp[i].toUpperCase() == word[i]) {
+      //if inp[i] when converted to uppercase matches word[i] it means word[i] needs to be lowercase
+      word.splice(i, 1, word[i].toLowerCase());
+    } else {
+      //word[i] needs to be uppercase
+      word.splice(i, 1, word[i].toUpperCase());
+    }
+  }
+  //array to string
+  return word.join("");
+};
+
+//Execute function on input
+input.addEventListener("input", (e) => {
+  clearSuggestion();
+  //Convert input value to regex since string.startsWith() is case sensitive
+  let regex = new RegExp("^" + input.value, "i");
+  //loop through names array
+  for (let i in names) {
+    //check if input matches with any word in names array
+    if (regex.test(names[i]) && input.value != "") {
+      //Change case of word in names array according to user input
+      names[i] = caseCheck(names[i]);
+      //display suggestion
+      suggestion.innerHTML = names[i];
+      break;
+    }
+  }
+});
+
+//Complete predictive text on enter key
+input.addEventListener("keydown", (e) => {
+  //When user presses enter and suggestion exists
+  if (e.keyCode == enterKey && suggestion.innerText != "") {
+    e.preventDefault();
+    input.value = suggestion.innerText;
+    //clear the suggestion
+    clearSuggestion();
+  }
+});
+//Sort names in ascending order
+let sortedNames = names.sort();
+
+//Execute function on keyup
+input.addEventListener("keyup", (e) => {
+  //loop through above array
+  //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+  removeElements();
+  for (let i of sortedNames) {
+    //convert input to lowercase and compare with each string
+
+    if (
+      i.toLowerCase().startsWith(input.value.toLowerCase()) &&
+      input.value != ""
+    ) {
+      //create li element
+      let listItem = document.createElement("li");
+      //One common class name
+      listItem.classList.add("list-items");
+      listItem.style.cursor = "pointer";
+      listItem.setAttribute("onclick", "displayNames('" + i + "')");
+      //Display matched part in bold
+      let word = "<b>" + i.substr(0, input.value.length) + "</b>";
+      word += i.substr(input.value.length);
+      //display the value in array
+      listItem.innerHTML = word;
+      document.querySelector(".list").appendChild(listItem);
+    }
+  }
+});
+function displayNames(value) {
+  input.value = value;
+  removeElements();
+}
+function removeElements() {
+  //clear all the item
+  let items = document.querySelectorAll(".list-items");
+  items.forEach((item) => {
+    item.remove();
+  });
+}
+</script>
