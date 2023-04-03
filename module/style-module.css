@@ -1,0 +1,460 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+html{
+    font-size: 14px;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    overflow-y: hidden;
+}
+a {
+    color: var(--color-dark);
+}
+img{
+    display: block;
+    width: 100%;
+}
+h1{
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+h2{
+    font-size: 1.4rem;
+}
+h3{
+    font-size: 0.87rem;
+}
+h4{
+    font-size: 0.8rem;
+}
+h5{
+    font-size: 0.77rem;
+}
+small{
+    font-size: 0.75rem;
+}
+.text-muted {
+    color: var(--color-info-dark);
+}
+p{
+    color: var(--color-dark-variant);
+}
+b{
+    color: var(--color-dark);
+}
+.primary{
+    color: var(--color-primary);
+}
+.danger{
+    color: var(--color-danger);
+}
+.success{
+    color: var(--color-success);
+}
+.warning{
+    color: var(--color-warning);
+}
+/* =============== insights ============= */
+.insights {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 1.6rem;
+}
+.insights > div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 30ms ease;
+}
+.insights > div:hover {
+    box-shadow: none;
+}
+.insights > div span{
+    background: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2rem;
+}
+.insights > div.expenses span{
+    background: var(--color-danger);
+}
+.insights > div.income span{
+    background: var(--color-success);
+}
+.insights > div .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.insights h3{
+    margin: 1rem 0 0.6rem;
+    font-family: 1rem;
+}
+.insights .progress {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+.insights svg{
+    width: 7rem;
+    height: 7rem;
+}
+.insights svg circle{
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+}
+.insights .sales svg circle{
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+.insights .expenses svg circle{
+    stroke-dashoffset: 20;
+    stroke-dasharray: 80;
+}
+.insights .income svg circle{
+    stroke-dashoffset: 35;
+    stroke-dasharray: 110;
+}
+.insights .progress .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.insights small{
+    margin-top: 1.3rem;
+    display: block;
+}
+/* ============ Recent orders =========== */
+.recent-orders{
+    margin-top: 2rem;
+}
+.recent-orders h2{
+    margin-bottom: 0.8rem;
+}
+.recent-orders table {
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.recent-orders table:hover{
+    box-shadow: none;
+}
+table tbody td{
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+table tbody tr:last-child td{
+    border: none;
+}
+.recent-orders a{
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+/* ============= Canvas ============== */
+canvas#chart{
+    background: var(--color-white);
+    width: 100%;
+    margin-top: 2rem;
+    border-radius: var(--card-border-radius);
+    padding:var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    max-height: 50vh;
+}
+/* =============== add product ============= */
+.add-product {
+    background-color: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-product:hover{
+    background: var(--color-primary);
+    color: white;
+}
+.add-product div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.add-product div h3{
+    font-weight: 600;
+}
+.item{
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.item:hover {
+    box-shadow: none;
+}
+.add-product{
+    margin-top: 1rem;
+}
+/* ============= Recent Updates ============= */
+.recent-updates{
+    margin-top: 1rem;
+}
+.recent-updates h2{
+    margin-bottom: 0.8rem;
+}
+.recent-updates .updates{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.recent-updates .updates:hover{
+    box-shadow: none;
+}
+.recent-updates .updates .update{
+    display: grid;
+    grid-template-columns: 2.6rem auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+/* ============= Sales Analytics ============== */
+.sales-analytics {
+    margin-top: 2rem;
+}
+.sales-analytics h2 {
+    margin-bottom: 0.8rem;
+}
+.sales-analytics .item{
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.sales-analytics .item:hover {
+    box-shadow: none;
+}
+.sales-analytics .item .right{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin: 0;
+    width: 100%;
+}
+.sales-analytics .item .icon{
+    padding: 0.6rem;
+    color: var(--color-white);
+    border-radius: 50%;
+    background: red;
+    display: flex;
+}
+.sales-analytics .item.offline .icon{
+    background: var(--color-danger);
+}
+.sales-analytics .item.customers .icon{
+    background: var(--color-success);
+}
+.sales-analytics .add-product {
+    background-color: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sales-analytics .add-product:hover{
+    background: var(--color-primary);
+    color: white;
+}
+.sales-analytics .add-product div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.sales-analytics .add-product div h3{
+    font-weight: 600;
+}
+/* ================= choropleth module ============ */
+  .chartCard {
+    background: var(--color-white);
+    width: 40%;
+    margin-top: 2rem;
+    border-radius: var(--card-border-radius);
+    padding:var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+/* ================= time line =================== */
+.container_module{
+    background: #bea2e7; /* Old browsers */
+    background: -moz-linear-gradient(top,  #bea2e7 0%, #86b7e7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #bea2e7 0%,#86b7e7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #bea2e7 0%,#86b7e7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bea2e7', endColorstr='#86b7e7',GradientType=0 ); /* IE6-9 */
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    height: calc(fit-content+1em);
+    overflow-x: auto;
+}
+.container_module ul {
+  list-style: none;
+  position: relative;
+  top: 0%;
+  left: 0%;
+  padding: 1px 100px;
+  padding-bottom: 35px;
+  color: #fff;
+  font-size: 13px;
+}
+.container_module ul:before {
+  content: '';
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  border-left: 2px dashed #fff;
+  
+}
+.container_module ul li {
+  position: relative;
+  margin-left: 30px ;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 14px;
+  border-radius: 6px;
+  width: 250px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .08)
+}
+.container_module ul li:not(:first-child) {
+  margin-top: 60px;
+}
+.container_module ul li > span {
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  left: -30px;
+  top: 0;
+  position: absolute;
+}
+.container_module ul li > span:before, .container_module ul li > span:after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  position: absolute;
+  background: #86b7e7;
+  left: -5px;
+  top: 0;
+}
+.container_module ul li span:after {
+  top: 100%;
+}
+.container_module ul li > div {
+  margin-left: 10px;  
+}
+.container_module div .title, .container_module div .type {
+  font-weight: 600;
+  font-size: 12px;
+}
+.container_module div .info {
+  font-weight: 300;
+}
+.container_module div > div {
+  margin-top: 5px;
+}
+.container_module span.number {
+  height: 100%;
+}
+.container_module span.number span {
+  position: relative;
+  font-size: 10px;
+  left: -35px;
+  font-weight: bold;
+}
+.container_module span.number span:first-child {
+  top: 0;
+}
+.container_module span.number span:last-child {
+  top: 100%;
+}
+/* ================= media query ================== */
+@media screen and (max-width: 1200px) {
+    main .insights{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    main .recent-orders{
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 8.8rem;
+    }
+    main .recent-orders table{
+        width: 83vw;
+    }
+    main table thead tr th:last-child,
+    main table thead tr th:first-child {
+        display: none;
+    }
+    main table tbody tr th:last-child,
+    main table tbody tr th:first-child {
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    main .recent-orders{
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+    }
+    main .recent-orders table{
+        width: 100%;
+        margin: 0;
+    }
+}
